@@ -68,8 +68,6 @@ exports.signup = async (req,res) => {
 
 exports.login = async (req, res) => {
     try {
-        console.log("in login 888888");
-        console.log(req.body);
         const{email,password} = req.body;
 
         //valindation of email and password , no parameter should be empty

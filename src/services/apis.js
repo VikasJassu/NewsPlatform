@@ -4,4 +4,5 @@ export const endpoints = {
     SIGNUP_API: baseUrl + "/signup",
     LOGIN_API: baseUrl + "/login",
     SAVEPOST_API: baseUrl + "/saved",
+    GET_SAVED_NEWS_API : baseUrl + "/getSaved",
 }

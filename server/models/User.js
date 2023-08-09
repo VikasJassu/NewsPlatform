@@ -19,7 +19,9 @@ const userSchema = new mongoose.Schema({
     },
     savedPosts: [
         {
-            type: String,
+            type:mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "SavedNews"
         }
     ]
 

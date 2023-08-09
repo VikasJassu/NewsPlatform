@@ -1,3 +1,4 @@
+const { all } = require("axios");
 const SavedNews = require("../models/SavedNews");
 const User = require("../models/User");
 
@@ -6,7 +7,7 @@ exports.savedNews =async (req, res) => {
     try{
         console.log("in the backenddddddd");
         const userId = req.user.id;
-        const{title, description, published, url, image,token} = req.body;
+        const{title, description, published, url, image} = req.body;
 
         if(!title || !description || !published || !url || !image) {
             return res.status(403).json({
@@ -15,8 +16,8 @@ exports.savedNews =async (req, res) => {
             });
         }
 
-       const isUserExist = await User.findById(userId);
 
+       const isUserExist = await User.findById(userId);
        if(!isUserExist) {
             return res.status(403).json({
                 success:false,
@@ -55,5 +56,38 @@ exports.savedNews =async (req, res) => {
             success: false,
             message: "Error in post saving",
         });
+    }
+}
+
+//get saved news
+
+exports.getSavedNews = async (req,res) => {
+    try{
+        const userId = req.user.id;
+        const isUserExist = await User.findById(userId);
+
+        if(!isUserExist) {
+            return res.status(403).json({
+                success:false,
+                message: "User does not exist",
+            });
+       } 
+
+        const userData = await User.find({});
+        const allData = await userData[0].populate("savedPosts")
+        console.log("printing all data",allData);
+
+        return res.status(200).json({
+            success: true,
+            data: allData,
+            message: "Saved post data fetched successfully",
+        })
+      
+    } catch(error) {
+        console.log(error);
+        return res.status(500).json({
+            success:false,
+            message: "Error in fetching saved news",
+        })
     }
 }

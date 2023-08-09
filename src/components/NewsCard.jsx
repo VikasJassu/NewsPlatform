@@ -8,8 +8,7 @@ import { toast } from 'react-hot-toast';
 
 const NewsCard = ({news}) => {
     const {user} = useSelector((state) => (state.profile));
-    const token = useSelector((state) => (state.auth.token));
-    console.log("token:::",token);
+    const {token} = useSelector((state) => (state.auth));
    
     const dispatch = useDispatch();
 
@@ -26,7 +25,6 @@ const NewsCard = ({news}) => {
         published: "",
         url:"",
         image:"",
-        token: ""
     });
 
     const{title, description, published, url, image} = savedData;
@@ -41,26 +39,14 @@ const NewsCard = ({news}) => {
             published: publishedRef.current.textContent,
             url: urlRef.current.textContent,
             image: imageRef.current.src,
-            token: token,
         })
     
         user && dispatch(add(savedData));
 
         console.log("printing saved data:" , savedData);
         
-        
-        if(user) {
-            dispatch(saveNews(title, description, published, url, image,token));
-        }
+        dispatch(saveNews(title, description, published, url, image,token));
     }
-
-     
-
-    
-
-   
-
-   
 
    
          

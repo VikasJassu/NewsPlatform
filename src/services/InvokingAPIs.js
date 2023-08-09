@@ -6,7 +6,7 @@ import { setToken } from "../redux/slices/authSlice";
 import { setUser } from "../redux/slices/profileSlice";
 
 
-const{ SIGNUP_API, LOGIN_API, SAVEPOST_API } = endpoints
+const{ SIGNUP_API, LOGIN_API, SAVEPOST_API, GET_SAVED_NEWS_API } = endpoints
 
 export function signUp(name , email , password, confirmPassword, navigate) {
     
@@ -99,7 +99,7 @@ export function logout(navigate) {
 
 export function saveNews(title,description,published,url,image,token) {
    
-    return async(dispatch) => {
+    return async() => {
        
         const toastId = toast.loading('Loading...', {
             id: 'loading',
@@ -113,10 +113,11 @@ export function saveNews(title,description,published,url,image,token) {
                 published,
                 url,
                 image,
-                token,
-            }
-            )
-            console.log("hello ji kya haal h");
+            },
+            {
+              Authorization: `Bearer ${token}`,
+            });
+    
             console.log("Save news api response...", response)
 
             if (!response.data.success) {
@@ -131,4 +132,34 @@ export function saveNews(title,description,published,url,image,token) {
         }
         toast.dismiss(toastId)
     }
+}
+
+export const getSavedNews = async(token) => {
+   
+     let result = [];
+      const toastId = toast.loading('Loading...', {
+          id: 'loading',
+        });
+
+      try{
+         
+          const response = await apiConnector("GET",GET_SAVED_NEWS_API,null,
+          {
+            Authorization: `Bearer ${token}`,
+          });
+
+          result = response?.data;
+  
+          console.log("get saved news api response...", response)
+
+          if (!response.data.success) {
+              throw new Error(response.data.message)
+            }
+
+      } catch(error) {
+          console.log("Error in get saveNews api call" ,error)
+          toast.error("Error in fetching")
+      }
+      toast.dismiss(toastId)
+      return result;
 }
