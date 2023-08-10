@@ -29,6 +29,9 @@ app.listen(PORT , () => {
 });
 
 
-// app.get("/" , () => {
-//     res.send(`<h1>this is my homepage</h1>`);
-// })
+app.get("/", (req, res) => {
+	return res.json({
+		success:true,
+		message:'Your server is up and running....'
+	});
+});
