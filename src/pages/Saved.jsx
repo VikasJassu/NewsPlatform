@@ -52,7 +52,7 @@ useEffect(() => {
           savedData?.map((news) => (
             <div className='flex flex-col sm:flex-row gap-8 items-center justify-center border-2 border-gray-300 shadow-sm p-5'>
                        <div  className=''>
-                           <img src={`${news.image}`} alt='Image not found' loading='lazy' width={400} className='rounded-md h-56' />
+                           <img src={`${news.image}`} alt='Image not found' loading='lazy' width={400} className='rounded-md h-56 hover:shadow-2xl hover:transition-all' />
                        </div>
                         <div className='w-7/12 max-sm:w-full flex flex-col font-serif text-white text-lg'>
                         

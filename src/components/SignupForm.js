@@ -65,7 +65,7 @@ function SignupForm() {
  
 
   return (
-    <div className="w-5/12 max-sm:w-9/12 border border-red-300 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-opacity-50 p-14 py-20 max-sm:px-3 max-sm:py-5 flex mx-auto translate-y-16">
+    <div className="w-5/12 max-sm:w-9/12 border border-red-300 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-opacity-30 p-14 py-20 max-sm:px-3 max-sm:py-5 flex mx-auto translate-y-16">
      
       <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4 ">
         <div className="flex gap-x-4">

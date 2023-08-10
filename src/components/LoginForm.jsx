@@ -29,7 +29,7 @@ function LoginForm() {
   }
 
   return (
-   <div className="w-96 max-sm:w-9/12 flex mx-auto translate-y-16 border border-red-300 bg-gradient-to-r from-cyan-400 to-cyan-200 p-14 pb-20 max-sm:p-3 max-sm:pb-5 bg-opacity-50">
+   <div className="w-96 max-sm:w-9/12 flex mx-auto translate-y-16 border border-red-300 bg-gradient-to-r from-cyan-400 to-cyan-200 p-14 pb-20 max-sm:p-3 max-sm:pb-5 bg-opacity-30">
      <form
       onSubmit={handleOnSubmit}
       className="mt-6 flex w-full flex-col gap-y-4"

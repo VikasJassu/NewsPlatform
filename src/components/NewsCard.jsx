@@ -43,7 +43,7 @@ const NewsCard = ({news}) => {
         })
 
         // console.log("printing saved data:" ,savedData);
-        dispatch(saveNews(title, description, published, url, image,token));
+        user && dispatch(saveNews(titleRef.current.textContent,descRef.current.textContent, publishedRef.current.textContent,urlRef.current.href, imageRef.current.src,token));
     }
          
 
@@ -56,7 +56,7 @@ const NewsCard = ({news}) => {
             
                
                        <div  className=''>
-                           <img ref={imageRef} src={`${news.image}`} alt='Image not found' loading='lazy' width={400} className='rounded-md h-56' />
+                           <img ref={imageRef} src={`${news.image}`} alt='Image not found' loading='lazy' width={400} className='rounded-md h-56 hover:shadow-2xl hover:transition-all' />
                        </div>
                         <div className='w-7/12 max-sm:w-full flex flex-col font-serif text-white text-lg '>
                         
