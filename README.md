@@ -1,31 +1,5 @@
-# React & Tailwind CSS Starter Pack
+This project is built using the MERN stack. Its backend is built using Nodejs and NoSql database named MongoDb is used. Its frontend is built using Reactjs and the Tailwind CSS framework. Redux is used for state management. Authentication is done using JWT Token. Data is stored in the database into proper schemas for the user and saved/favorite news.
+In news platform, user can signUp and login into account using the login and signup page. User can save favorite articles only when logged in.
+I utilized an API called CurrentNews for retrieving news articles. Users can save favorite articles by clicking on the save button on newsCard. Once news is saved then user can also remove saved news from the saved page by clicking on the delete icon.
 
-This is a starter pack for creating React projects with Tailwind CSS configured. It uses React version **18.2** and Tailwind CSS version **3.2**.
-
-## Usage
-
-This starter pack includes a basic setup for using **Tailwind CSS with React**. To start building your own components and styles, follow these steps:
-
-1. Clone the repository to your local machine.
-    ```sh
-    git clone https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git
-    ```
-
-1. Install the required packages.
-    ```sh
-    cd react-tailwind-css-starter-pack
-    npm install
-    ```
-
-1. Start the development server.
-    ```sh
-    npm start
-    ```
-1. Open the project in your browser at [`http://localhost:3000`](http://localhost:3000) to view your project.
-1. Create your React components and add your styles using Tailwind classes. You can also create new CSS files and import them into your components.
-
-The project is set up to use `postcss-cli` to process your CSS files. You can add your own `tailwind.config.js` file to customize your Tailwind setup.
-
-## Contributing
-
-Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request.
+//I think it would be great if more features were added to this platform. For example, it could be really useful to have email verification using OTP, and a subscription feature using payment integration would be really convenient. It would also be nice to have news available in different languages, and the option to switch between dark and light themes. These are just a few ideas, but I think they could really enhance the user experience. Due to time constraints, I can only build a limited number of features.
