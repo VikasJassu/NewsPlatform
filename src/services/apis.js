@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:4000/api/v1"
+const baseUrl = "https://newsplatform-backend.onrender.com/api/v1"
 
 export const endpoints = {
     SIGNUP_API: baseUrl + "/signup",
