@@ -24,9 +24,9 @@ const userRoute = require("./routes/user");
 app.use("/api/v1" , userRoute);
 
 
-app.listen(PORT , () => {
-    console.log(`server started at ${PORT}`);
-});
+// app.listen(PORT , () => {
+//     console.log(`server started at ${PORT}`);
+// });
 
 
 app.get("/" , () => {
