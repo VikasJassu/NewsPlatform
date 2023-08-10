@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cookieParser()); 
 app.use(
 	cors({
-		origin:"https://news-platform-beta.vercel.app",
+		origin:"https://news-platform-oz3n.vercel.app",
 		credentials:true,
 	})
 )
