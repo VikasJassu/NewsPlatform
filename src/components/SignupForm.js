@@ -65,32 +65,27 @@ function SignupForm() {
  
 
   return (
-    <div className="w-5/12 flex mx-auto translate-y-16">
+    <div className="w-5/12 max-sm:w-9/12 border border-red-300 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-opacity-50 p-14 py-20 max-sm:px-3 max-sm:py-5 flex mx-auto translate-y-16">
      
       <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4 ">
         <div className="flex gap-x-4">
           <label>
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-              Name <sup className="text-pink-200">*</sup>
-            </p>
             <input
               required
               type="text"
               name="name"
               value={name}
               onChange={handleOnChange}
-              placeholder="Enter last name"
+              placeholder="Enter Your Name"
               style={{
                 boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
               }}
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+              className=" sm:min-w-[25.70rem] max-sm:w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
             />
           </label>
         </div>
         <label className="w-full">
-          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-            Email Address <sup className="text-pink-200">*</sup>
-          </p>
+         
           <input
             required
             type="text"
@@ -106,9 +101,7 @@ function SignupForm() {
         </label>
         <div className="flex gap-x-4">
           <label className="relative">
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-              Create Password <sup className="text-pink-200">*</sup>
-            </p>
+           
             <input
               required
               type={showPassword ? "text" : "password"}
@@ -123,7 +116,7 @@ function SignupForm() {
             />
             <span
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+              className="absolute right-3 top-[12px] z-[10] cursor-pointer"
             >
               {showPassword ? (
                 <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -133,9 +126,7 @@ function SignupForm() {
             </span>
           </label>
           <label className="relative">
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-              Confirm Password <sup className="text-pink-200">*</sup>
-            </p>
+           
             <input
               required
               type={showConfirmPassword ? "text" : "password"}
@@ -150,7 +141,7 @@ function SignupForm() {
             />
             <span
               onClick={() => setShowConfirmPassword((prev) => !prev)}
-              className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+              className="absolute right-3 top-[12px] z-[10] cursor-pointer"
             >
               {showConfirmPassword ? (
                 <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -162,7 +153,7 @@ function SignupForm() {
         </div>
         <button
           type="submit"
-          className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
+          className="mt-6 rounded-[8px] bg-yellow-500 hover:bg-yellow-50 transition-all py-[8px] px-[12px] font-medium text-richblack-900"
         >
           Create Account
         </button>

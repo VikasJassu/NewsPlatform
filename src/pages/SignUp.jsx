@@ -5,7 +5,7 @@ import SignupForm from '../components/SignupForm'
 
 const SignUp = () => {
   return (
-   <div className='h-full'>
+   <div className='min-h-screen'>
        <SignupForm/>
    </div>
   )

@@ -6,7 +6,7 @@ import { setToken } from "../redux/slices/authSlice";
 import { setUser } from "../redux/slices/profileSlice";
 
 
-const{ SIGNUP_API, LOGIN_API, SAVEPOST_API, GET_SAVED_NEWS_API } = endpoints
+const{ SIGNUP_API, LOGIN_API, SAVEPOST_API, GET_SAVED_NEWS_API,DELETE_API } = endpoints
 
 export function signUp(name , email , password, confirmPassword, navigate) {
     
@@ -128,14 +128,23 @@ export function saveNews(title,description,published,url,image,token) {
 
         } catch(error) {
             console.log("Error in saveNews api call" ,error)
-            toast.error("Could not Save")
+            if(error.response.data.message === "Already saved") {
+              toast.error("Already Saved");
+            }
+            else{
+              toast.error("Could not Save")
+            }
         }
         toast.dismiss(toastId)
     }
 }
 
 export const getSavedNews = async(token) => {
-   
+    if(!token) {
+      return toast.error("Please login to Continue",{
+        id: "Error"
+      });
+    }
      let result = [];
       const toastId = toast.loading('Loading...', {
           id: 'loading',
@@ -158,8 +167,50 @@ export const getSavedNews = async(token) => {
 
       } catch(error) {
           console.log("Error in get saveNews api call" ,error)
-          toast.error("Error in fetching")
+        
+          toast.error("Error in fetching",{
+            id: 'Error'
+          })
       }
       toast.dismiss(toastId)
       return result;
+}
+
+
+export const deleteNews = async(newsId,token) => {
+  let result = [];
+  if(newsId === undefined) {
+    toast.error("Please try again");
+  }
+  console.log("printing newsid in api",newsId);
+
+   const toastId = toast.loading('Loading...', {
+       id: 'loading',
+     });
+
+   try{
+      
+       const response = await apiConnector("DELETE",DELETE_API,{newsId,},
+       {
+         Authorization: `Bearer ${token}`,
+       },);
+
+       console.log("printing response", response)
+       result = response?.data?.updatedData;
+      
+
+       toast.success("Deleted Successful")
+       console.log("delete api response...", response)
+
+       if (!response.data.success) {
+           throw new Error(response.data.message)
+         }
+
+   } catch(error) {
+       console.log("Error in delete api call" ,error)
+       toast.error("Error in deleting")
+   }
+   toast.dismiss(toastId)
+   return result;
+   
 }

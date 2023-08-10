@@ -1,1 +1,6 @@
 /* write your css here */
+.App {
+    text-align: center;
+    background-image: url('https://elements-video-cover-images-0.imgix.net/files/220512242/Preview.jpg?auto=compress&crop=edges&fit=crop&fm=jpeg&h=800&w=1200&s=3702b1eeb3ed39c89cbef83a0ec2e371'); 
+   
+  }

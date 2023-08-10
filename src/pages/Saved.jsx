@@ -1,52 +1,68 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { getSavedNews } from '../services/InvokingAPIs';
+import { deleteNews, getSavedNews } from '../services/InvokingAPIs';
 import Spinner from "../components/Spinner"
 import { Link } from 'react-router-dom';
 import {MdDelete} from "react-icons/md"
 
+
 const Saved = () => {
   const {token} = useSelector((state) => (state.auth));
+  const {user} = useSelector((state)=> (state.profile));
+  const urlRef = useRef();
  
 
   const[savedData, setSavedData] = useState([]);
   const[loading, setLoading] = useState(false);
 
+  
+  const handleDelete = async(_id) => {
+    const updatedData = await deleteNews(_id,token);
+    setSavedData([]);
+    setSavedData(updatedData.savedPosts);
+    // console.log("updatedData", updatedData);
+  }
 
-  useEffect(() => {
-   ;(async () => {
+  const fetchedData = async () => {
     setLoading(true);
-    const savedNewsDetails = await getSavedNews(token);
-    setSavedData(savedNewsDetails.data.savedPosts);
-    
-    setLoading(false)
- })()
-  },[]);
+    const result = await getSavedNews(token);
+    if (result) {
+      setSavedData(result.data.savedPosts);
+    }
+    setLoading(false);
+  };
 
-  console.log("printing data",savedData)
+useEffect(() => {
+  fetchedData();
+},[]);
+
+
 
 
   return (
-    <div>
+   <div className='bg-gradient-to-r from-blue-600 to-violet-600 bg-fixed bg-contain min-h-screen p-5'>
+       {
+        user ? (
+          <div>
       {
         loading ? (<Spinner/>) : (<div>
           <div className='w-10/12 mx-auto'>
         
         {
           savedData?.map((news) => (
-            <div className='flex flex-col sm:flex-row gap-8 m-10 items-center justify-center border-2 border-gray-300 shadow-sm p-5'>
+            <div className='flex flex-col sm:flex-row gap-8 items-center justify-center border-2 border-gray-300 shadow-sm p-5'>
                        <div  className=''>
                            <img src={`${news.image}`} alt='Image not found' loading='lazy' width={400} className='rounded-md h-56' />
                        </div>
-                        <div className='w-7/12 max-sm:w-full flex flex-col font-serif '>
+                        <div className='w-7/12 max-sm:w-full flex flex-col font-serif text-white text-lg'>
                         
                             <h3 className='font-bold text-lg sm:my-3'>{(news.title).slice(0,50)}....</h3>
                             <p className='font-medium my-2 hidden sm:block'>{(news.description).slice(0,200)}...</p>  
-                            <p className='font-medium my-1 hidden sm:block'>{news.published}</p>
+                            <p className='font-medium my-1 hidden sm:block'>{(news.published.slice(0,16))}</p>
                             <p className='font-semibold my-1 truncate'> Full article:  
-                                <Link to={news.url} target='_blank' className='text-blue-800'> {(news.url)}....</Link>
+                                <Link ref={urlRef} to={news.url} target='_blank' className='text-yellow-300'> {(news.url)}.....</Link>
                             </p>
-                            <div className='text-4xl sm:ml-[32.5rem] translate-y-2 text-gray-700 hover:text-gray-900 hover:cursor-pointer'><MdDelete/></div>
+                            <div onClick={() => handleDelete(news._id)} className='text-4xl sm:ml-[32.5rem] translate-y-2 text-white hover:text-red-600 hover:transition-all hover:scale-110 hover:cursor-pointer'><MdDelete/></div>
                         </div>   
         </div>
           ))}
@@ -54,6 +70,11 @@ const Saved = () => {
     </div>
    </div>)}
     </div>
+        ) : (
+          <div className='my-48 mx-[33rem] font-bold text-2xl text-yellow-500'> Please Login</div>
+        )
+       }
+   </div>
   )
 }
 

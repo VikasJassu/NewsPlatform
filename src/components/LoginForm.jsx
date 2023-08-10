@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useDispatch} from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { login } from "../services/InvokingAPIs"
 
 function LoginForm() {
@@ -29,15 +29,13 @@ function LoginForm() {
   }
 
   return (
-   <div className="w-4/12 flex mx-auto translate-y-16">
+   <div className="w-96 max-sm:w-9/12 flex mx-auto translate-y-16 border border-red-300 bg-gradient-to-r from-cyan-400 to-cyan-200 p-14 pb-20 max-sm:p-3 max-sm:pb-5 bg-opacity-50">
      <form
       onSubmit={handleOnSubmit}
       className="mt-6 flex w-full flex-col gap-y-4"
     >
       <label className="w-full">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-          Email Address <sup className="text-pink-200">*</sup>
-        </p>
+      
         <input
           required
           type="text"
@@ -52,9 +50,7 @@ function LoginForm() {
         />
       </label>
       <label className="relative">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-          Password <sup className="text-pink-200">*</sup>
-        </p>
+       
         <input
           required
           type={showPassword ? "text" : "password"}
@@ -69,7 +65,7 @@ function LoginForm() {
         />
         <span
           onClick={() => setShowPassword((prev) => !prev)}
-          className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+          className="absolute right-3 top-[12px] z-[10] cursor-pointer"
         >
           {showPassword ? (
             <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -77,15 +73,11 @@ function LoginForm() {
             <AiOutlineEye fontSize={24} fill="#AFB2BF" />
           )}
         </span>
-        <Link to="/forgot-password">
-          <p className="mt-1 ml-auto max-w-max text-xs text-blue-100">
-            Forgot Password
-          </p>
-        </Link>
+        
       </label>
       <button
         type="submit"
-        className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
+        className="mt-6 rounded-[8px] bg-yellow-500 hover:bg-yellow-50 transition-all py-[8px] px-[12px] font-medium text-richblack-900"
       >
         Sign In
       </button>

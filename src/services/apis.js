@@ -5,4 +5,5 @@ export const endpoints = {
     LOGIN_API: baseUrl + "/login",
     SAVEPOST_API: baseUrl + "/saved",
     GET_SAVED_NEWS_API : baseUrl + "/getSaved",
+    DELETE_API: baseUrl + "/delete",
 }

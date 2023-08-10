@@ -8,7 +8,7 @@ import Saved from "./pages/Saved";
 
 function App() {
   return (
-   <div className="bg-gradient-to-r from-sky-500 to-indigo-500 h-[100vh]">
+   <div className="bg-gradient-to-r from-blue-800 to-indigo-900">
       <div>
           <Navbar/>
           <Routes>
@@ -17,7 +17,6 @@ function App() {
             <Route path="/signUp" element={<SignUp/>}/>
             <Route path="/saved" element={<Saved/>}/>
           </Routes>
-          
       </div>
    </div>
   );
