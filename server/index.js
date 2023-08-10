@@ -29,6 +29,6 @@ app.listen(PORT , () => {
 });
 
 
-app.get("/" , () => {
-    res.send(`<h1>this is my homepage</h1>`);
-})
+// app.get("/" , () => {
+//     res.send(`<h1>this is my homepage</h1>`);
+// })
