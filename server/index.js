@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
+const userRoute = require("./routes/user");
 require("dotenv").config();
+
 const PORT = process.env.PORT || 4000;
 
 const cookieParser = require("cookie-parser");
@@ -19,7 +20,7 @@ app.use(
 
 require("./config/database").connectDB();
 
-const userRoute = require("./routes/user");
+
 
 app.use("/api/v1" , userRoute);
 
