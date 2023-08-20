@@ -24,10 +24,10 @@ exports.savedNews =async (req, res) => {
                 message: "User does not exist",
             });
        }
-        const alreadySaved = await SavedNews.find({url});
-       
-        const URLs = alreadySaved.map((news)=> (news.url)).includes(url);
-        console.log("url ", URLs);
+         const alreadySaved = await User.findById(userId);
+        const savedNewsUrls = (await alreadySaved.populate("savedPosts")).savedPosts.map((news) => (news.url)); 
+        const URLs = savedNewsUrls.includes(url);
+        
 
         if(URLs) {
         return res.status(401).json({
@@ -84,9 +84,10 @@ exports.getSavedNews = async (req,res) => {
             });
        } 
 
-        const userData = await User.find({});
-        const allData = await userData[0].populate("savedPosts")
-        console.log("printing all data",allData);
+         const userData = await User.findById(userId);
+        // console.log("user ka data", userData);
+        const allData = await userData.populate("savedPosts")
+        // console.log("printing all data",allData);
 
         return res.status(200).json({
             success: true,
@@ -124,20 +125,15 @@ exports.deleteSavedNews = async(req,res) => {
        await User.findByIdAndUpdate(userId,{
         $pull: {savedPosts: newsId}
        },{new:true})
+
+        
       const news = await SavedNews.findById(newsId);
       console.log("printing newsssssssssssss",news)
 
-      const userData = await User.find({});
-      const updatedData = await userData[0].populate("savedPosts")
-       console.log("printing updated daat",updatedData);
+      const userData = await User.findById(userId);
+      const updatedData = await userData.populate("savedPosts")
+    
 
-    //    console.log("k haal h bhai");
-    //    const savedNews = await SavedNews.findOne({url: {$eq: url}});
-    //    console.log("printing saved newsss",savedNews);
-    // //    User.findOneAndDelete({url: url},{new:true});
-    // // const userData = await User.find({});
-    // // const allData = await userData[0].populate("savedPosts")
-    // //    console.log("k haal h bhai",allData);
        return res.status(200).json({
         success:true,
         updatedData,
